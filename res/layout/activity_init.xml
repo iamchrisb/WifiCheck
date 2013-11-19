@@ -8,41 +8,97 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".InitActivity" >
 
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="52dp"
+            android:text="Wifi-State:" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/wifiState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="101dp"
-        android:layout_marginTop="18dp" />
+        android:layout_alignRight="@+id/tetheringButton"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:text="@string/default_state" />
 
-    <Button
-        android:id="@+id/enable_disable_wifi"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/wifiState"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="73dp"
-        android:text="@string/enable_disable_wifi" />
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="70dp"
+        android:text="IP:" />
 
     <TextView
         android:id="@+id/ip_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
         android:layout_alignLeft="@+id/wifiState"
-        android:layout_below="@+id/wifiState"
-        android:layout_marginTop="34dp"
-        android:text="@string/ip_address" />
+        android:text="@string/default_state" />
 
     <TextView
-        android:id="@+id/wifi_state"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/wifiState"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="19dp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="40dp"
+        android:text="Type:" />
+
+    <TextView
+        android:id="@+id/wifi_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignRight="@+id/ip_address"
         android:text="@string/default_state" />
+
+    <TextView
+        android:id="@+id/extraInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="15dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/refresh_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tetheringButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tetheringButton"
+        android:layout_marginBottom="16dp"
+        android:text="refresh" />
+
+    <Button
+        android:id="@+id/wifiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tetheringButton"
+        android:layout_alignLeft="@+id/tetheringButton"
+        android:text="@string/disable_tethering" />
+
+    <Button
+        android:id="@+id/tetheringButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/refresh_button"
+        android:layout_toRightOf="@+id/extraInfo"
+        android:text="@string/disable_wifi" />
 
 </RelativeLayout>

@@ -7,5 +7,11 @@
     <string name="default_state">default</string>
     <string name="enable_disable_wifi">enable/disable</string>
     <string name="ip_address">ip</string>
+    <string name="tethering_enabled">tethering enabled</string>
+    <string name="wifi_enabled">wifi enabled</string>
+    <string name="disable_wifi">disable wifi</string>
+    <string name="enable_wifi">enable wifi</string>
+    <string name="disable_tethering">disable tethering</string>
+    <string name="enable_tethering">enable tethering</string>
 
 </resources>
