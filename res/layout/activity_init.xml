@@ -27,7 +27,7 @@
         android:id="@+id/wifiState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tetheringButton"
+        android:layout_alignRight="@+id/dataButton"
         android:layout_alignTop="@+id/linearLayout1"
         android:text="@string/default_state" />
 
@@ -76,29 +76,37 @@
         android:text="TextView" />
 
     <Button
+        android:id="@+id/dataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/refresh_button"
+        android:layout_toRightOf="@+id/extraInfo"
+        android:text="@string/disable_data" />
+
+    <Button
         android:id="@+id/refresh_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tetheringButton"
+        android:layout_alignLeft="@+id/dataButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/tetheringButton"
-        android:layout_marginBottom="16dp"
+        android:layout_alignRight="@+id/dataButton"
         android:text="refresh" />
 
     <Button
         android:id="@+id/wifiButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tetheringButton"
-        android:layout_alignLeft="@+id/tetheringButton"
+        android:layout_above="@+id/dataButton"
+        android:layout_alignLeft="@+id/dataButton"
+        android:layout_alignRight="@+id/dataButton"
         android:text="@string/disable_wifi" />
 
     <Button
-        android:id="@+id/tetheringButton"
+        android:id="@+id/buttonTethering"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/refresh_button"
-        android:layout_toRightOf="@+id/extraInfo"
-        android:text="@string/disable_tethering" />
+        android:layout_above="@+id/wifiButton"
+        android:layout_toRightOf="@+id/textView3"
+        android:text="@string/enable_tethering" />
 
 </RelativeLayout>

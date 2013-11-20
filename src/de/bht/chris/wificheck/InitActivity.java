@@ -22,6 +22,8 @@ public class InitActivity extends Activity {
 	private WifiInfo connectionInfo;
 	private Button wifiButton;
 	private ConnectivityManager connectivityManager;
+	private boolean dataState;
+	private Button dataButton;
 
 
 	@Override
@@ -32,8 +34,6 @@ public class InitActivity extends Activity {
         connectionInfo = wifiManager.getConnectionInfo();
         
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        checkWifi();
         
         Button refreshButton = (Button) findViewById(R.id.refresh_button);
         refreshButton.setOnClickListener(new View.OnClickListener() {
@@ -58,18 +58,20 @@ public class InitActivity extends Activity {
 			}
 		});
         
-        Button dataButton = (Button) findViewById(R.id.tetheringButton);
+        dataButton = (Button) findViewById(R.id.dataButton);
         dataButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				try {
-					changeDataConnection(true);
+					changeDataConnection(!dataState);
+					checkWifi();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 
 		});
+        checkWifi();
     }
 
 	private void changeDataConnection(boolean enabled) throws Exception {
@@ -81,7 +83,7 @@ public class InitActivity extends Activity {
 		  final Class iConnectivityManagerClass = Class.forName(iConnectivityManager.getClass().getName());
 		  final Method setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
 		  setMobileDataEnabledMethod.setAccessible(true);
-			
+		  dataState = enabled;
 		  setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
 	}
 
@@ -123,6 +125,12 @@ public class InitActivity extends Activity {
 		default:
 			break;
 		}
+        
+        if(dataState) {
+			  dataButton.setText(R.string.disable_data);
+		  }else {
+			dataButton.setText(R.string.enable_data);
+		  }
 	}
 
 

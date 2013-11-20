@@ -13,5 +13,7 @@
     <string name="enable_wifi">enable wifi</string>
     <string name="disable_tethering">disable tethering</string>
     <string name="enable_tethering">enable tethering</string>
+    <string name="enable_data">enable data</string>
+    <string name="disable_data">disable data</string>
 
 </resources>
