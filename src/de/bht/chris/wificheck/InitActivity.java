@@ -1,7 +1,10 @@
 package de.bht.chris.wificheck;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +20,11 @@ import android.widget.TextView;
 
 
 public class InitActivity extends Activity {
+	
+	/**
+	 * for more informations, visit: 
+	 * https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/TetherSettings.java
+	 */
 
     private WifiManager wifiManager;
 	private WifiInfo connectionInfo;
@@ -24,6 +32,8 @@ public class InitActivity extends Activity {
 	private ConnectivityManager connectivityManager;
 	private boolean dataState;
 	private Button dataButton;
+	private Button tetheringButton;
+	private boolean tetheringEnabled;
 
 
 	@Override
@@ -71,9 +81,39 @@ public class InitActivity extends Activity {
 			}
 
 		});
+        
+        tetheringButton = (Button) findViewById(R.id.buttonTethering);
+        tetheringButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				changeTetheringState(!tetheringEnabled);
+			}
+		});
+
         checkWifi();
     }
 
+	private void changeTetheringState(Boolean enabled) {
+		Method[] declaredMethods = wifiManager.getClass().getDeclaredMethods();
+		for (Method method : declaredMethods) {
+			if(method.getName().equals("isWifiApEnabled")) {
+				try {
+//					Object invoke = method.invoke(wifiManager, null);
+					boolean isTetheringEnabled = (Boolean) method.invoke(wifiManager);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(method.getName().equals("setWifiEnabled")) {
+				try {
+					method.invoke(wifiManager, enabled);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	private void changeDataConnection(boolean enabled) throws Exception {
 		  final Class conmanClass = Class.forName(this.connectivityManager.getClass().getName());
 		  final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
@@ -87,6 +127,7 @@ public class InitActivity extends Activity {
 		  setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
 	}
 
+	
 
     private void checkWifi() {
         try {
