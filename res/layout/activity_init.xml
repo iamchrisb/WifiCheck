@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/tetheringButton"
         android:layout_alignLeft="@+id/tetheringButton"
-        android:text="@string/disable_tethering" />
+        android:text="@string/disable_wifi" />
 
     <Button
         android:id="@+id/tetheringButton"
@@ -99,6 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/refresh_button"
         android:layout_toRightOf="@+id/extraInfo"
-        android:text="@string/disable_wifi" />
+        android:text="@string/disable_tethering" />
 
 </RelativeLayout>

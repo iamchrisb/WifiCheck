@@ -1,5 +1,8 @@
 package de.bht.chris.wificheck;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 
 public class InitActivity extends Activity {
 
@@ -53,8 +57,33 @@ public class InitActivity extends Activity {
 				checkWifi();
 			}
 		});
-    	
+        
+        Button dataButton = (Button) findViewById(R.id.tetheringButton);
+        dataButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					changeDataConnection(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
     }
+
+	private void changeDataConnection(boolean enabled) throws Exception {
+		  final Class conmanClass = Class.forName(this.connectivityManager.getClass().getName());
+		  final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
+			
+		  iConnectivityManagerField.setAccessible(true);
+		  final Object iConnectivityManager = iConnectivityManagerField.get(this.connectivityManager);
+		  final Class iConnectivityManagerClass = Class.forName(iConnectivityManager.getClass().getName());
+		  final Method setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+		  setMobileDataEnabledMethod.setAccessible(true);
+			
+		  setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
+	}
 
 
     private void checkWifi() {
