@@ -76,14 +76,6 @@
         android:text="TextView" />
 
     <Button
-        android:id="@+id/dataButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/refresh_button"
-        android:layout_toRightOf="@+id/extraInfo"
-        android:text="@string/disable_data" />
-
-    <Button
         android:id="@+id/refresh_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,8 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/dataButton"
-        android:layout_alignLeft="@+id/dataButton"
-        android:layout_alignRight="@+id/dataButton"
+        android:layout_alignLeft="@+id/extraInfo"
         android:text="@string/disable_wifi" />
 
     <Button
@@ -106,7 +97,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/wifiButton"
-        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignLeft="@+id/wifiButton"
         android:text="@string/enable_tethering" />
+
+    <Button
+        android:id="@+id/dataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/refresh_button"
+        android:layout_alignLeft="@+id/wifiButton"
+        android:text="@string/disable_data" />
+
+    <Button
+        android:id="@+id/facebookButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dataButton"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="29dp"
+        android:text="@string/facebookName" />
+
+    <Button
+        android:id="@+id/dbButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/dataButton"
+        android:text="@string/dbButton" />
 
 </RelativeLayout>

@@ -1,15 +1,14 @@
 package de.bht.chris.wificheck;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -24,6 +23,9 @@ public class InitActivity extends Activity {
 	/**
 	 * for more informations, visit: 
 	 * https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/TetherSettings.java
+	 * http://stackoverflow.com/questions/3531801/enable-disable-usb-or-wifi-tethering-programmatically-on-android
+	 * http://stackoverflow.com/questions/7509924/detect-usb-tethering-on-android/7830747#7830747
+	 * http://stackoverflow.com/questions/3023226/android-2-2-wifi-hotspot-api
 	 */
 
     private WifiManager wifiManager;
@@ -34,6 +36,10 @@ public class InitActivity extends Activity {
 	private Button dataButton;
 	private Button tetheringButton;
 	private boolean tetheringEnabled;
+	private Button facebookButton;
+	private String facebookUrl = "https://www.facebook.com";
+	private String deutscheBahnUrl = "http://www.bahn.de";
+	private Button dbButton;
 
 
 	@Override
@@ -90,6 +96,30 @@ public class InitActivity extends Activity {
 				changeTetheringState(!tetheringEnabled);
 			}
 		});
+        
+        facebookButton = (Button) findViewById(R.id.facebookButton);
+        facebookButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (dataState || wifiManager.isWifiEnabled()) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl));
+					startActivity(intent);
+				}
+			}
+
+		});
+        
+        dbButton = (Button) findViewById(R.id.dbButton);
+        dbButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (dataState || wifiManager.isWifiEnabled()) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(deutscheBahnUrl));
+					startActivity(intent);
+				}
+			}
+		});
+        
 
         checkWifi();
     }
