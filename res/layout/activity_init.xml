@@ -127,4 +127,31 @@
         android:layout_alignTop="@+id/dataButton"
         android:text="@string/dbButton" />
 
+    <Button
+        android:id="@+id/googleButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/refresh_button"
+        android:layout_alignBottom="@+id/refresh_button"
+        android:layout_alignRight="@+id/dbButton"
+        android:text="@string/googleButton" />
+
+    <Button
+        android:id="@+id/notifyButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonTethering"
+        android:layout_alignLeft="@+id/facebookButton"
+        android:text="notify" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonTethering"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Switch" />
+
 </RelativeLayout>

@@ -17,5 +17,6 @@
     <string name="disable_data">disable data</string>
     <string name="facebookName">fb</string>
     <string name="dbButton">deutsche bahn</string>
+    <string name="googleButton">google</string>
 
 </resources>
